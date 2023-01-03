@@ -1,2 +1,2 @@
-# kotisivut
-Palomäki -kotisivut
+kotisivut
+Palomäki -kotisivu
