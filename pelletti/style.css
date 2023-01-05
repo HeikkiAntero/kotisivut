@@ -31,9 +31,18 @@ body {
 
 }
 
+#flexed {
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+}
+
 #last-pushed-data {
     font-size: 70%;
-    text-align: right;
+}
+
+#time-now {
+    font-size: 70%;
 }
 
 #roll {

@@ -19,6 +19,9 @@ let DATA;
 let COOR; // = JSON.parse(localStorage.getItem('COOR'));
 let ROLL = 0;
 let countDataLoads = 0;
+let timeNowDiv;
+let timeIntervalId;
+
 
 window.onload = function () {
     // Initialize Firebase
@@ -129,7 +132,10 @@ function luoValikko() {
     let rangeSelArvo = localStorage.getItem('rangeSel');
 
     document.getElementById('info').innerHTML = `
-    <div id='last-pushed-data'>Viimeksi lisätty: <strong></strong></div>
+    <div id='flexed'>
+        <div id='time-now'>Aika nyt: <strong>-</strong></div>
+        <div id='last-pushed-data'>Viimeksi lisätty: <strong>-</strong></div>
+    </div>
     <form id='values-form'>
       ${checkboxes()}
       <br>
@@ -157,16 +163,27 @@ function luoValikko() {
     </ul>
     <input type="range" id="roll" min="0" max="15" value="0">
   `;
+    timeNowDiv = document.querySelector('#time-now strong')
+    timeNowDiv.textContent = 'kissa'
+    updateTimeInterval()
     addingListeners();
 }
 
-// 
+function updateTimeInterval() {
+    if (timeIntervalId) {
+        clearInterval(timeIntervalId)
+    }
+    timeIntervalId = setInterval(() => {
+        timeNowDiv.textContent = moment(new Date()).format('HH:mm:ss');
+    }, 1000)
+    timeNowDiv.textContent = moment(new Date()).format('HH:mm:ss');
+}
+
 function addingListeners() {
     const slider = document.getElementById('roll');
     slider.oninput = function () {
         ROLL = this.value;
         updateGraph();
-        console.log(this.value);
     };
 
     //checkboxes
@@ -203,7 +220,6 @@ function zoomToConstantValues(start) {
     const endDate = moment()._d.getTime();
     if (isFinite(startDate) && isFinite(endDate)) {
         COOR = [startDate, endDate];
-        // console.log('dateRangeButton', COOR);
         updateGraph();
     } else {
         console.log('ERROR, vaara paivamaara');
@@ -217,7 +233,6 @@ function zoomButtonClicked() {
     const endDate = moment(endDateInput.value, 'DD-MM-YYYY')._d.getTime();
     if (isFinite(startDate) && isFinite(endDate)) {
         COOR = [startDate, endDate];
-        console.log('dateRangeButton', COOR);
         updateGraph();
     } else {
         console.log('ERROR, vaara paivamaara');
@@ -249,7 +264,6 @@ function addEventsZoomButtons(keys) {
 
             // let zoomNappi = document.getElementById('date-range-button');
             const uusiRange = [start, end];
-            // console.log('uusiRange', uusiRange)
             updateInputValues(uusiRange);
             zoomToConstantValues(start);
 
@@ -287,6 +301,19 @@ function updateGraph(e) {
     draw(keys, rangeSel);
 }
 
+function getTitle(name) {
+    const names = {
+        'ov': 'ohjevesi',
+        'mv': 'menovesi',
+        'pv': '-',
+        'ul': 'ulkolämpötila',
+        'sl': 'sisälämpötila',
+        'kl': 'kattilan lämpötila',
+        'kv': 'hormin lämpötila',
+        'oh': 'ohjaus',
+    }
+    return names[name]
+}
 function checkboxes() {
     let checkedKeys = (
         localStorage.getItem('keys') === null
@@ -296,25 +323,25 @@ function checkboxes() {
         : localStorage.getItem('keys');
 
     const names = [
-        'ov',
-        'mv',
-        'pv',
-        'ul',
-        'sl',
-        'kl',
-        'kv',
-        'oh',
+        'ov', // ohjevesi
+        'mv', // menovesi
+        'pv', // -
+        'ul', // ulkolämpötila
+        'sl', // sisälämpötila
+        'kl', // kattilan lämpötila
+        'kv', // hormin lämpötila
+        'oh', // ohjaus
     ];
     return names.map((n, i) => {
         return `
       <input id='${n}' class='boxes' type="checkbox" value="${n}" ${checkedKeys.indexOf(n) > -1 ? 'checked' : ''}>
-      <label for="${n}" style="color:${COLORS[n]};font-weight:bold;">${n}</label>
+      <label for="${n}" title="${getTitle(n)}"  style="color:${COLORS[n]};font-weight:bold;">${n}</label>
     `;
     }).join('');
 }
 
 function formatTime(v) {
-    return moment(new Date(v)).format('DD.MM.YYYY HH:mm');
+    return moment(new Date(v)).format('DD.MM.YYYY HH:mm:ss');
 }
 
 function draw(keys, rangeSel) {
@@ -346,7 +373,7 @@ function draw(keys, rangeSel) {
             const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'><span style="color: ${obj.color};">${obj.label}</span> <span>${formatValue(obj.y, undefined, obj.label)}</span></div>`);
             return time + valuesArray.map(x => x).join('');
         }
-        const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'><span style="color: ${obj.color};">${obj.label}</span><spa></span></div>`);
+        const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'><span style="color: ${obj.color};" title="${getTitle(obj.label)}">${obj.label}</span><spa></span></div>`);
         return '<div id="legend-aika"><span></span></div>' + valuesArray.map(x => x).join('');
     }
 
@@ -390,18 +417,11 @@ function draw(keys, rangeSel) {
         });
     } else if (g) {
         //initial values
-        // const minDate = g.xAxisRange()[0];
-        // const maxDate = g.xAxisRange()[1];
 
         let start = moment(new Date()).subtract(25, 'hours')._d.getTime();
         let end = moment(new Date())._d.getTime();
 
         zoomToConstantValues(start);
-
         updateInputValues([start, end]);
-
-        // COOR = [minDate, maxDate];
-        // console.log('initial ', COOR)
-        // updateInputValues(COOR);
     }
 }
