@@ -1,8 +1,3 @@
-// import moment from 'moment.min';
-// import * as firebase from 'firebase';
-// impmrt Dygraph from 'dygraphs';
-// import './style.scss';
-
 const COLORS = {
     mv: 'rgb(0, 128, 255)', // light blue
     ul: 'green',
@@ -15,12 +10,12 @@ const COLORS = {
 };
 
 
-let DATA;
-let COOR; // = JSON.parse(localStorage.getItem('COOR'));
-let ROLL = 0;
-let countDataLoads = 0;
-let timeNowDiv;
-let timeIntervalId;
+let globalData;
+let globalCoor; // = JSON.parse(localStorage.getItem('COOR'));
+let globalRoll = 0;
+let globalDataLoadsCount = 0;
+let globalTimeUntillNextDiv;
+let globalTimeIntervalId;
 
 
 window.onload = function () {
@@ -43,17 +38,17 @@ window.onload = function () {
 }; // window.onload = function () {
 
 function gotData(d) {
-    DATA = Object.values(d.val());
-    DATA = handleGapsInData(DATA);
+    globalData = Object.values(d.val());
+    globalData = handleGapsInData(globalData);
 
     initializeDOM();
     luoValikko();
-    if (countDataLoads > 0) {
-        let d = DATA[DATA.length - 1].aika - DATA[DATA.length - 2].aika
-        COOR[0] = COOR[0] + d
-        COOR[1] = COOR[1] + d
+    if (globalDataLoadsCount > 0) {
+        let d = globalData[globalData.length - 1].aika - globalData[globalData.length - 2].aika
+        globalCoor[0] = globalCoor[0] + d
+        globalCoor[1] = globalCoor[1] + d
     }
-    countDataLoads++;
+    globalDataLoadsCount++;
     updateGraph();
 }
 
@@ -133,7 +128,7 @@ function luoValikko() {
 
     document.getElementById('info').innerHTML = `
     <div id='flexed'>
-        <div id='time-now'>Aika nyt: <strong>-</strong></div>
+        <div id='time-now'>Aikaa seuravaan lisäykseen noin: <strong>-</strong></div>
         <div id='last-pushed-data'>Viimeksi lisätty: <strong>-</strong></div>
     </div>
     <form id='values-form'>
@@ -163,26 +158,33 @@ function luoValikko() {
     </ul>
     <input type="range" id="roll" min="0" max="15" value="0">
   `;
-    timeNowDiv = document.querySelector('#time-now strong')
-    timeNowDiv.textContent = 'kissa'
+    globalTimeUntillNextDiv = document.querySelector('#time-now strong')
     updateTimeInterval()
     addingListeners();
 }
 
 function updateTimeInterval() {
-    if (timeIntervalId) {
-        clearInterval(timeIntervalId)
+    if (globalTimeIntervalId) {
+        clearInterval(globalTimeIntervalId)
     }
-    timeIntervalId = setInterval(() => {
-        timeNowDiv.textContent = moment(new Date()).format('HH:mm:ss');
+    globalTimeIntervalId = setInterval(() => {
+        globalTimeUntillNextDiv.textContent = getTimeUntillNext()
     }, 1000)
-    timeNowDiv.textContent = moment(new Date()).format('HH:mm:ss');
+    globalTimeUntillNextDiv.textContent = getTimeUntillNext()
+}
+
+function getTimeUntillNext() {
+    let end = moment(globalData[globalData.length - 1].aika).add(5, 'minutes')
+    let start = moment()
+    let duration = moment.duration(end.diff(start))
+    let f = moment.utc(duration.as('milliseconds')).format("HH:mm:ss");
+    return f
 }
 
 function addingListeners() {
     const slider = document.getElementById('roll');
     slider.oninput = function () {
-        ROLL = this.value;
+        globalRoll = this.value;
         updateGraph();
     };
 
@@ -219,7 +221,7 @@ function zoomToConstantValues(start) {
     const startDate = start; //moment().subtract(24, 'hours')._d.getTime();
     const endDate = moment()._d.getTime();
     if (isFinite(startDate) && isFinite(endDate)) {
-        COOR = [startDate, endDate];
+        globalCoor = [startDate, endDate];
         updateGraph();
     } else {
         console.log('ERROR, vaara paivamaara');
@@ -232,7 +234,7 @@ function zoomButtonClicked() {
     const endDateInput = document.getElementById('end-date');
     const endDate = moment(endDateInput.value, 'DD-MM-YYYY')._d.getTime();
     if (isFinite(startDate) && isFinite(endDate)) {
-        COOR = [startDate, endDate];
+        globalCoor = [startDate, endDate];
         updateGraph();
     } else {
         console.log('ERROR, vaara paivamaara');
@@ -257,8 +259,8 @@ function addEventsZoomButtons(keys) {
                     start = moment(new Date()).subtract(1, 'months')._d.getTime();
                     break;
                 default: //case 'kaikki':
-                    start = DATA[0].aika;
-                    end = DATA[DATA.length - 1].aika;
+                    start = globalData[0].aika;
+                    end = globalData[globalData.length - 1].aika;
                     break;
             }
 
@@ -290,7 +292,7 @@ function updateGraph(e) {
     let keys = [];
     let boxes = document.getElementsByClassName('boxes');
     let lastDiv = document.querySelector('#last-pushed-data strong')
-    lastDiv.textContent = formatTime(DATA[DATA.length - 1].aika)
+    lastDiv.textContent = formatTime(globalData[globalData.length - 1].aika)
 
     Array.from(boxes).forEach(function (box) {
         if (box.checked === true) {
@@ -351,7 +353,7 @@ function draw(keys, rangeSel) {
     localStorage.setItem('keys', keys);
     localStorage.setItem('rangeSel', rangeSel);
 
-    let parsedData = DATA.map(x => {
+    let parsedData = globalData.map(x => {
         let arr = [];
         keys.forEach(key => arr.push(x.data[key]));
         return [new Date(x.aika), ...arr];
@@ -388,10 +390,10 @@ function draw(keys, rangeSel) {
             labels: ["aika", ...keys],
             // connectSeparatedPoints: false,
             zoomCallback: function (minDate, maxDate, y) {
-                COOR = [minDate, maxDate];
-                updateInputValues(COOR);
+                globalCoor = [minDate, maxDate];
+                updateInputValues(globalCoor);
             },
-            rollPeriod: ROLL, // pyoristaa kulmat
+            rollPeriod: globalRoll, // pyoristaa kulmat
             legend: 'always',
             labelsDiv: 'legenddiv',
             legendFormatter: legendFormatter,
@@ -411,9 +413,9 @@ function draw(keys, rangeSel) {
     );
 
 
-    if (g && COOR) {
+    if (g && globalCoor) {
         g.updateOptions({
-            dateWindow: COOR
+            dateWindow: globalCoor
         });
     } else if (g) {
         //initial values
