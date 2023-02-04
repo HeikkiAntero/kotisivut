@@ -15,6 +15,9 @@
       margin: 0 2rem;
       background-color: #e0e0e0;
     }
+    a {
+      text-decoration: none;
+    }
 
     .part {
       font-size: 1rem;
@@ -41,6 +44,15 @@
       max-width: 1200px;
       margin: 0 auto;
     }
+    .icon {
+      height: 2rem;
+    }
+
+    .music-links img {
+      height: 2rem;
+    }
+
+
   </style>
 </head>
 
@@ -55,94 +67,97 @@
       </h3>
     </div>
 
-    <article>
 
-      <div class="kayttoehdot">
-        <h3>Käyttöehdot:</h3>
-        <div style="margin-left: 1rem;">
-          <p>
-            Tältä sivulta ladattavia tallenteita voi käyttää vapaasti ilman teosto-maksuja seuraavin
-            ehdoin:
-          </p>
-          <ul>
-            <li>
-              Teksti "(c) musiikki.palomäki.fi" on aina mukana uusissa tallenteissa
-            </li>
-            <li>
-              Uudet toimivat sovitukset lähetetään sähköpostissa osoitteeseen: musiikki@palomäki.fi
-            </li>
-            <li>
-              Muut muutokset, korjaukset ja parannukset lähetetään myös osoitteeseen: musiikki@palomäki.fi
-            </li>
-          </ul>
-          <p>Nuoteista on myös mscz-tiedostot. Niitä käytetään ilmaisessa MuseScore-ohjelmassa, jossa voi kuunnella
-            nuottien mukaista musiikkia, muokata sitä, transponoida, tulostaa uusia nuotteja yms. Se on ladattavissa: <a
-              href="https://musescore.org/fi">https://musescore.org/fi</a>.
-          </p>
-        </div>
-      </div>
-
-      <div class="part">
-        <h3>Musikaalit:</h3>
+    <div class="kayttoehdot">
+      <h3>Käyttöehdot:</h3>
+      <div style="margin-left: 1rem;">
+        <p>
+          Tältä sivulta ladattavia tallenteita voi käyttää vapaasti ilman teosto-maksuja seuraavin
+          ehdoin:
+        </p>
         <ul>
           <li>
-            'Ihmisen tarina' kertoo koko ihmisen historian luomisesta ikuisuuteen taivaallisesta näkökulmasta.
-            <br>
-            <a href="./data/IhmisenTarina.zip">Sanat ja nuotit (pdf)</a>, <a
-              href="./data/IhmisenTarinaNuotit.zip">mscz-tiedostot</a>, <a href="./data/IhmisenTarina_mp3.zip">MP3</a>
+            Teksti "(c) musiikki.palomäki.fi" on aina mukana uusissa tallenteissa
           </li>
           <li>
-            'Sota-asu' kertoo lasten tasolta hengellisestä sota-asusta Efesolaiskirjeen mukaan.
-            <br>
-            <a href="./data/SotaAsu.zip">Sanat ja nuotit (pdf)</a>, <a
-              href="./data/SotaAsuNuotit.zip">mscz-tiedostot</a>,
-            <a href="./data/SotaAsu_mp3.zip">MP3</a>
+            Uudet toimivat sovitukset lähetetään sähköpostissa osoitteeseen: musiikki@palomäki.fi
           </li>
           <li>
-            'Lapsi vain' kertoo unohdetuista lapsista ja niiden merkityksestä Jumalalle
-            <br>
-            <a href="./data/LapsiVain.zip">Sanat ja nuotit (pdf)</a>, <a
-              href="./data/LapsiVainNuotit.zip">mscz-tiedostot</a>, <a href="./data/LapsiVain_mp3.zip">MP3</a>
+            Muut muutokset, korjaukset ja parannukset lähetetään myös osoitteeseen: musiikki@palomäki.fi
           </li>
         </ul>
+        <p>Nuoteista on myös mscz-tiedostot. Niitä käytetään ilmaisessa MuseScore-ohjelmassa, jossa voi kuunnella
+          nuottien mukaista musiikkia, muokata sitä, transponoida, tulostaa uusia nuotteja yms. Se on ladattavissa: <a
+            href="https://musescore.org/fi">https://musescore.org/fi</a>.
+        </p>
       </div>
+    </div>
 
-      <div class="part">
-        <h3>Laulut:</h3>
-        <ul>
-          <li>
-            'Äidin muisto'. Tehty äidin hautajaisiin
-            <br>
-            <a href="./data/AidinMuisto.pdf">Sanat ja nuotit (pdf)</a>, <a
-              href="./data/AidinMuisto.zip">mscz-tiedosto</a>, <a href="./data/AidinMuisto.mp3">MP3</a>
-          </li>
-          <li>
-            'Lapsen rukous'. äitienpäivälaulu
-            <br>
-            <a href="./data/LapsenRukous.pdf">Sanat ja nuotit (pdf)</a>, <a
-              href="./data/LapsenRukous.zip">mscz-tiedosto</a>, <a href="./data/LapsenRukous.mp3">MP3</a>
-          </li>
-          <li>
-            'Me löysimme Jeesuksen'. Joululaulu
-            <br>
-            <a href="./data/MeLoysimmeJeesuksen.pdf">Sanat ja nuotit (pdf)</a>,<a
-              href="./data/MeLoysimmeJeesuksen.zip">mscz-tiedosto</a>, <a href="./data/MeLoysimmeJeesuksen.mp3">MP3</a>
-          </li>
-        </ul>
-      </div>
+    <div class="part">
+      <h3>Musikaalit:</h3>
+      <ul class="music-links">
+        <li>
+          'Ihmisen tarina' kertoo koko ihmisen historian luomisesta ikuisuuteen taivaallisesta näkökulmasta.
+          <br>
+          <a href="./data/IhmisenTarina.zip"> <img src="./pdf.svg"> </a>
+          <a href="./data/IhmisenTarinaNuotit.zip"> <img src="./mscz.svg"> </a>
+          <a href="./data/IhmisenTarina_mp3.zip"> <img src="./mp3.svg"> </a>
+        </li>
+        <li>
+          'Sota-asu' kertoo lasten tasolta hengellisestä sota-asusta Efesolaiskirjeen mukaan.
+          <br>
+          <a href="./data/SotaAsu.zip"> <img src="./pdf.svg"> </a>
+          <a href="./data/SotaAsuNuotit.zip"> <img src="./mscz.svg"> </a>
+          <a href="./data/SotaAsu_mp3.zip"> <img src="./mp3.svg"> </a>
+        </li>
+        <li>
+          'Lapsi vain' kertoo unohdetuista lapsista ja niiden merkityksestä Jumalalle
+          <br>
+          <a href="./data/LapsiVain.zip"> <img src="./pdf.svg"> </a>
+          <a href="./data/LapsiVainNuotit.zip"> <img src="./mscz.svg"> </a>
+          <a href="./data/LapsiVain_mp3.zip"> <img src="./mp3.svg"> </a>
+        </li>
+      </ul>
+    </div>
 
-      <div class="part">
-        <h3>Laulujen suomennoksia:</h3>
-        <ul>
-          <li>
-            One Day at a time, Peace in the Walley, Down to the River
-            <br>
-            <a href="./data/Suomennokset.pdf">Sanat (pdf)</a>
-          </li>
-        </ul>
-      </div>
+    <div class="part">
+      <h3>Laulut:</h3>
+      <ul class="music-links">
+        <li>
+          'Äidin muisto'. Tehty äidin hautajaisiin
+          <br>
+          <a href="./data/AidinMuisto.pdf"> <img src="./pdf.svg"> </a>
+          <a href="./data/AidinMuisto.zip"> <img src="./mscz.svg"> </a>
+          <a href="./data/AidinMuisto.mp3"> <img src="./mp3.svg"> </a>
+        </li>
+        <li>
+          'Lapsen rukous'. äitienpäivälaulu
+          <br>
+          <a href="./data/LapsenRukous.pdf"> <img src="./pdf.svg"> </a>
+          <a href="./data/LapsenRukous.zip"> <img src="./mscz.svg"> </a>
+          <a href="./data/LapsenRukous.mp3"> <img src="./mp3.svg"> </a>
+        </li>
+        <li>
+          'Me löysimme Jeesuksen'. Joululaulu
+          <br>
+          <a href="./data/MeLoysimmeJeesuksen.pdf"> <img src="./pdf.svg"> </a>
+          <a href="./data/MeLoysimmeJeesuksen.zip"> <img src="./mscz.svg"> </a>
+          <a href="./data/MeLoysimmeJeesuksen.mp3"> <img src="./mp3.svg"> </a>
+        </li>
+      </ul>
+    </div>
 
-    </article>
+    <div class="part">
+      <h3>Laulujen suomennoksia:</h3>
+      <ul>
+        <li>
+          One Day at a time, Peace in the Walley, Down to the River
+          <br>
+          <a href="./data/Suomennokset.pdf"> <img class="icon" src="./pdf.svg"> </a>
+        </li>
+      </ul>
+    </div>
+
 
     <p class="update-info">
       25.11.2018: Nyt sähköposti: musiikki@palomäki.fi toimii ! <br>
