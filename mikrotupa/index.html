@@ -1,83 +1,76 @@
 <!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
-<html lang="fi">
+<html lang="fi" class="scroll-smooth">
 
 <head>
-
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MIKROTUPA elektroniikan opetusmodulit - electronic education kits</title>
-
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta content="Heikki Palomäki" name="author">
+  <title>MIKROTUPA elektroniikan opetusmodulit - electronic education kits</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body>(SIVUSTO ON VIELÄ TYÖN ALLA)<br>
-  <center>
-    <font size="+4">MIKROTUPA</font> <br>
-    H.Palomäki
-    <p>Keskisentie 30 A <br>
-      34640 Mustajärvi<br>
-      puh: 050-3001227</p>
-    <p>email: mikrotupa@seinajoki.com<br></p>
-    <hr>
+<body class="">
+  <header class="flex flex-col items-center bg-green-300 p-4">
+    <h1 class="text-5xl">MIKROTUPA</h1>
+    <div class="flex flex-col items-center bg-slate-700 text-white p-4 mt-4 rounded-xl">
+      <div>Heikki Palomäki</div>
+      <div>Keskisentie 30 A</div>
+      <div>34640 Mustajärvi</div>
+      <div>mikrotupa@seinajoki.com</div>
+      <div>050-3001227</div>
+    </div>
+  </header>
 
-    <h1>SMARTRONICS</h1>
-    <p> Älykäs elektroniikka - Sulautetut järjestelmät - mikrokontrolleritekniikka </p>
-    <p>
-      <span style="font-weight: bold; font-style: italic;">Opetus- ja harjoittelumoduleja ammattikoulujen ja
-        ammattikorkeakoulujen opetustyöhön</span>
-    </p>
+  <hr>
 
+  <section class="p-4 flex flex-col items-center text-center bg-red-200">
+    <h1 class="font-bold text-2xl ">SMARTRONICS</h1>
+    <ul class="list-disc text-start text-blue-900">
+      <li><a class="font-bold" href="#a">Älykäs elektroniikka</a></li>
+      <li><a class="font-bold" href="#b">Sulautetut järjestelmät</a></li>
+      <li><a class="font-bold" href="#c">Mikrokontrolleritekniikka</a></li>
+    </ul>
+    
+    
+    
+    <p class="italic">Opetus- ja harjoittelumoduleja ammattikoulujen ja ammattikorkeakoulujen opetustyöhön</p>
+  </section>
 
-    <hr>
-    <table style="text-align: left; width: 100%; background-color: rgb(255, 255, 153);" border="1" cellpadding="2"
-      cellspacing="2">
-      <tbody>
-        <tr>
-          <td style="vertical-align: top; background-color: rgb(255, 255, 153);"><big><big><big>ATMEL:&nbsp;&nbsp;&nbsp;
-                  AVR kontrollerit</big></big></big></td>
+  <hr>
 
-        </tr>
-        <tr>
-          <td style="vertical-align: top;">Älykkään elektroniikan harjoitustyö: BeetleRobo<br>
-            <img style="width: 176px; height: 150px;" alt="" src="BeetleRobopic.jpg"><br>
-          </td>
+  <section class="p-4 flex flex-col items-center bg-yellow-200 text-center">
+    <h1 class="font-bold text-2xl">ATMEL: AVR kontrollerit</h1>      
 
-          <td style="vertical-align: top;"><br>
-          </td>
-        </tr>
-        <tr>
-          <td style="vertical-align: top;">Sulautettujen järjestelmien opetus: Xuino
-            <br>
-            <img style="width: 160px; height: 152px;" alt="" src="U4platform.JPG">
-          </td>
+    <div class="w-3/4 flex flex-col items-center mt-4">
+      <h2 id="a">Älykkään elektroniikan harjoitustyö: <span class="font-bold">BeetleRobo</span></h2>
+      <img class="max-w-[300px]" src="./images/BeetleRobopic.jpg" alt="BeetleRobopic">
+    </div>
 
-          <td style="vertical-align: top;"><a href="http://lompsa.seamk.fi/heikki.palomaki/sulautetut.zip"><br>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p style="text-align: left;"><br>
-    </p>
-  </center>
-  <table style="text-align: left; width: 100%; background-color: rgb(204, 255, 255);" border="1" cellpadding="2"
-    cellspacing="2">
-    <tbody>
-      <tr>
-        <td style="vertical-align: top;"><big><big><big>NORDIG&nbsp; nRF24Lx1 radiokontrollerit</big></big></big></td>
+    <div class="w-3/4 flex flex-col items-center  mt-4">
+      <h2 id="b">Sulautettujen järjestelmien opetus: <span class="font-bold">Xuino</span></h2>
+      <img src="./images/U4platform.JPG" alt="Xuino">
+    </div>
+  </section>
 
-      </tr>
-      <tr>
-        <td style="vertical-align: top;">SURF radiokontrolleritekniikka: nRF24LE1<br>
-          <br>
-        </td>
+  <hr>
 
-        <td style="vertical-align: top;"><br>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <br>
+  <section class="p-4 flex flex-col items-center bg-blue-200 text-center">
+    <h1 id="c" class="font-bold text-2xl">NORDIG nRF24Lx1 radiokontrollerit</h1>      
+
+    <div class="w-3/4 flex flex-col items-center mt-4">
+      <h2>URF radiokontrolleritekniikka: <span class="font-bold">nRF24LE1</span></h2>
+    </div>
+  </section>
 </body>
 
 </html>
