@@ -12,8 +12,13 @@
   <style>
     html {
       font-size: 24px;
-      margin: 0 2rem;
+      margin: 0 1rem;
       background-color: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
     }
 
     h1,
@@ -30,6 +35,9 @@
     .part {
       font-size: 1rem;
     }
+    .part li {
+      margin-top: 0.5rem;
+    }
 
     .kayttoehdot {
       font-size: 60%;
@@ -40,28 +48,47 @@
       margin-top: 3rem;
     }
 
+    
     .title {
       text-align: center;
       font-size: 2rem;
       font-weight: bold;
     }
+    .title p {
+      font-size: 1.2rem;
+      font-weight: normal;
+    }
 
     .container {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
     }
 
     .icon {
-      height: 3rem;
+      height: 2.5rem;
       margin-bottom: 0.5rem;
     }
 
     hr {
       margin: 1rem;
+      background-color: black;
     }
 
-    .center-items {
-      text-align: center;
+
+
+    .song-title {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .song-discription {
+      font-size: 80%;
+    }
+    @media (min-width: 900px) {
+      .grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+    }      
     }
   </style>
 </head>
@@ -70,145 +97,157 @@
   <div class="container">
 
     <div class="title">
-      <h2>musiikki.palomäki.fi
-      </h2>
-      <h3>
-        Vapaastikäytettävää musiikkia:
-      </h3>
+      <h1>musiikki.palomäki.fi</h1>
+      <p>Vapaastikäytettävää musiikkia:</p>
     </div>
 
-<hr>
-
-
-    <div class="part">
-      <h3>Musikaalit:</h3>
-      <ul class="music-links">
-        <li>
-          <div>
-            'Ihmisen tarina' kertoo koko ihmisen historian luomisesta ikuisuuteen taivaallisesta näkökulmasta.
-          </div>
-          <div class="center-items">
-            <a href="./data/IhmisenTarina.zip"> <img class="icon" src="./pdf.svg"> </a>
-            <a href="./data/IhmisenTarinaNuotit.zip"> <img class="icon" src="./mscz.svg"> </a>
-            <a href="./data/IhmisenTarina_mp3.zip"> <img class="icon" src="./mp3.svg"> </a>
-          </div>
-        </li>
-        <li>
-          <div>
-            'Sota-asu' kertoo lasten tasolta hengellisestä sota-asusta Efesolaiskirjeen mukaan.
-
-          </div>
-          <div class="center-items">
-
-            <a href="./data/SotaAsu.zip"> <img class="icon" src="./pdf.svg"> </a>
-            <a href="./data/SotaAsuNuotit.zip"> <img class="icon" src="./mscz.svg"> </a>
-            <a href="./data/SotaAsu_mp3.zip"> <img class="icon" src="./mp3.svg"> </a>
-          </div>
-        </li>
-        <li>
-          <div>
-
-            'Lapsi vain' kertoo unohdetuista lapsista ja niiden merkityksestä Jumalalle
-          </div>
-          <div class="center-items">
-
-            <a href="./data/LapsiVain.zip"> <img class="icon" src="./pdf.svg"> </a>
-            <a href="./data/LapsiVainNuotit.zip"> <img class="icon" src="./mscz.svg"> </a>
-            <a href="./data/LapsiVain_mp3.zip"> <img class="icon" src="./mp3.svg"> </a>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-<hr>
-
+    <hr>
 
     <div class="part">
-      <h3>Laulut:</h3>
-      <ul class="music-links">
-        <li>
-          <div>
-            'Äidin muisto'. Tehty äidin hautajaisiin
-
-          </div>
-          <div class="center-items">
-            <a href="./data/AidinMuisto.pdf"> <img class="icon" src="./pdf.svg"> </a>
-            <a href="./data/AidinMuisto.zip"> <img class="icon" src="./mscz.svg"> </a>
-            <a href="./data/AidinMuisto.mp3"> <img class="icon" src="./mp3.svg"> </a>
-
-          </div>
-        </li>
-        <li>
-          <div>
-            'Lapsen rukous'. äitienpäivälaulu
-
-          </div>
-          <div class="center-items">
-            <a href="./data/LapsenRukous.pdf"> <img class="icon" src="./pdf.svg"> </a>
-            <a href="./data/LapsenRukous.zip"> <img class="icon" src="./mscz.svg"> </a>
-            <a href="./data/LapsenRukous.mp3"> <img class="icon" src="./mp3.svg"> </a>
-
-          </div>
-        </li>
-        <li>
-          <div>
-            'Me löysimme Jeesuksen'. Joululaulu
-
-          </div>
-          <div class="center-items">
-            <a href="./data/MeLoysimmeJeesuksen.pdf"> <img class="icon" src="./pdf.svg"> </a>
-            <a href="./data/MeLoysimmeJeesuksen.zip"> <img class="icon" src="./mscz.svg"> </a>
-            <a href="./data/MeLoysimmeJeesuksen.mp3"> <img class="icon" src="./mp3.svg"> </a>
-
-          </div>
-        </li>
-      </ul>
-    </div>
-
-<hr>
-
-
-    <div class="part">
-      <h3>Laulujen suomennoksia:</h3>
+      <h2>Musikaalit:</h2>
       <ul>
         <li>
-          <div>
-            One Day at a time, Peace in the Walley, Down to the River
-
+          <div class="grid">
+            <div>
+              <div class="song-title">'Ihmisen tarina'</div>
+              <div class="song-discription">kertoo koko ihmisen historian luomisesta ikuisuuteen taivaallisesta
+                näkökulmasta.</div>
+            </div>
+            <div>
+              <a href="./data/IhmisenTarina.zip"> <img class="icon" src="./pdf.svg"> </a>
+              <a href="./data/IhmisenTarinaNuotit.zip"> <img class="icon" src="./mscz.svg"> </a>
+              <a href="./data/IhmisenTarina_mp3.zip"> <img class="icon" src="./mp3.svg"> </a>
+            </div>
           </div>
-          <div class="center-items">
-            <a href="./data/Suomennokset.pdf"> <img class="icon" src="./pdf.svg"> </a>
+        </li>
+        <li>
+          <div class="grid">
+            <div>
+              <div class="song-title">'Sota-asu'</div>
+              <div class="song-discription">
+                kertoo lasten tasolta hengellisestä sota-asusta Efesolaiskirjeen mukaan.
+              </div>
+            </div>
+            <div>
+              <a href="./data/SotaAsu.zip"> <img class="icon" src="./pdf.svg"> </a>
+              <a href="./data/SotaAsuNuotit.zip"> <img class="icon" src="./mscz.svg"> </a>
+              <a href="./data/SotaAsu_mp3.zip"> <img class="icon" src="./mp3.svg"> </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="grid">
+            <div>
+              <div class="song-title">'Lapsi vain'</div>
+              <div class="song-discription">
+                kertoo unohdetuista lapsista ja niiden merkityksestä Jumalalle
+              </div>
+            </div>
+            <div>
+              <a href="./data/LapsiVain.zip"> <img class="icon" src="./pdf.svg"> </a>
+              <a href="./data/LapsiVainNuotit.zip"> <img class="icon" src="./mscz.svg"> </a>
+              <a href="./data/LapsiVain_mp3.zip"> <img class="icon" src="./mp3.svg"> </a>
+            </div>
           </div>
         </li>
       </ul>
     </div>
 
+    <hr>
 
 
-    <div class="kayttoehdot">
-      <h3>Käyttöehdot:</h3>
-      <div style="margin-left: 1rem;">
-        <p>
-          Tältä sivulta ladattavia tallenteita voi käyttää vapaasti ilman teosto-maksuja seuraavin
-          ehdoin:
-        </p>
-        <ul>
-          <li>
-            Teksti "(c) musiikki.palomäki.fi" on aina mukana uusissa tallenteissa
-          </li>
-          <li>
-            Uudet toimivat sovitukset lähetetään sähköpostissa osoitteeseen: musiikki@palomäki.fi
-          </li>
-          <li>
-            Muut muutokset, korjaukset ja parannukset lähetetään myös osoitteeseen: musiikki@palomäki.fi
-          </li>
-        </ul>
-        <p>Nuoteista on myös mscz-tiedostot. Niitä käytetään ilmaisessa MuseScore-ohjelmassa, jossa voi kuunnella
-          nuottien mukaista musiikkia, muokata sitä, transponoida, tulostaa uusia nuotteja yms. Se on ladattavissa: <a
-            href="https://musescore.org/fi">https://musescore.org/fi</a>.
-        </p>
+    <div class="part">
+      <h2>Laulut:</h2>
+      <ul>
+        <li>
+          <div class="grid">
+            <div>
+              <div class="song-title">'Äidin muisto'</div>
+              <div class="song-discription">tehty äidin hautajaisiin</div>
+            </div>
+
+            <div>
+              <a href="./data/AidinMuisto.pdf"> <img class="icon" src="./pdf.svg"> </a>
+              <a href="./data/AidinMuisto.zip"> <img class="icon" src="./mscz.svg"> </a>
+              <a href="./data/AidinMuisto.mp3"> <img class="icon" src="./mp3.svg"> </a>
+            </div>
+          </div>
+    </li>
+    <li>
+      <div class="grid">
+        <div>
+          <div class="song-title">'Lapsen rukous'</div>
+          <div class="song-discription">äitienpäivälaulu</div>
+        </div>
+        <div>
+          <a href="./data/LapsenRukous.pdf"> <img class="icon" src="./pdf.svg"> </a>
+          <a href="./data/LapsenRukous.zip"> <img class="icon" src="./mscz.svg"> </a>
+          <a href="./data/LapsenRukous.mp3"> <img class="icon" src="./mp3.svg"> </a>
+        </div>
       </div>
+    </li>
+    <li>
+      <div class="grid">
+        <div>
+          <div class="song-title">'Me löysimme Jeesuksen'</div>
+          <div class="song-discription">joululaulu</div>
+        </div>
+        <div>
+          <a href="./data/MeLoysimmeJeesuksen.pdf"> <img class="icon" src="./pdf.svg"> </a>
+          <a href="./data/MeLoysimmeJeesuksen.zip"> <img class="icon" src="./mscz.svg"> </a>
+          <a href="./data/MeLoysimmeJeesuksen.mp3"> <img class="icon" src="./mp3.svg"> </a>
+        </div>
+      </div>
+    </li>
+    </ul>
+  </div>
+
+  <hr>
+
+
+  <div class="part">
+    <h2>Laulujen suomennoksia:</h2>
+    <ul>
+      <li>
+        <div class="grid">
+          <div>
+            <div class="song-title">'One Day at a time', 'Peace in the Walley', 'Down to the River'</div>
+            <div class="song-discription"></div>
+          </div>
+          <div>
+            <a href="./data/Suomennokset.pdf"> <img class="icon" src="./pdf.svg"> </a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+  <div class="kayttoehdot">
+    <h2>Käyttöehdot:</h2>
+    <div style="margin-left: 1rem;">
+      <p>
+        Tältä sivulta ladattavia tallenteita voi käyttää vapaasti ilman teosto-maksuja seuraavin
+        ehdoin:
+      </p>
+      <ul>
+        <li>
+          Teksti "(c) musiikki.palomäki.fi" on aina mukana uusissa tallenteissa
+        </li>
+        <li>
+          Uudet toimivat sovitukset lähetetään sähköpostissa osoitteeseen: musiikki@palomäki.fi
+        </li>
+        <li>
+          Muut muutokset, korjaukset ja parannukset lähetetään myös osoitteeseen: musiikki@palomäki.fi
+        </li>
+      </ul>
+      <p>Nuoteista on myös mscz-tiedostot. Niitä käytetään ilmaisessa MuseScore-ohjelmassa, jossa voi kuunnella
+        nuottien mukaista musiikkia, muokata sitä, transponoida, tulostaa uusia nuotteja yms. Se on ladattavissa: <a
+          href="https://musescore.org/fi">https://musescore.org/fi</a>.
+      </p>
     </div>
+  </div>
 
   </div>
 
