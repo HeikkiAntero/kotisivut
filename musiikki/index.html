@@ -15,6 +15,14 @@
       margin: 0 2rem;
       background-color: #e0e0e0;
     }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      text-align: center;
+    }
+
     a {
       text-decoration: none;
     }
@@ -24,26 +32,25 @@
     }
 
     .kayttoehdot {
-      font-size: 0.7rem;
+      font-size: 60%;
       border: solid 1px black;
       border-radius: 1rem;
       padding: 0 0.5rem;
       background-color: transparent;
+      margin-top: 3rem;
     }
 
     .title {
       text-align: center;
-    }
-
-    .update-info {
-      float: right;
-      font-size: 0.7rem;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 700px;
       margin: 0 auto;
     }
+
     .icon {
       height: 2rem;
     }
@@ -52,7 +59,13 @@
       height: 2rem;
     }
 
+    hr {
+      margin: 1rem;
+    }
 
+    .center-items {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -66,6 +79,114 @@
         Vapaastikäytettävää musiikkia:
       </h3>
     </div>
+
+<hr>
+
+
+    <div class="part">
+      <h3>Musikaalit:</h3>
+      <ul class="music-links">
+        <li>
+          <div>
+            'Ihmisen tarina' kertoo koko ihmisen historian luomisesta ikuisuuteen taivaallisesta näkökulmasta.
+          </div>
+          <div class="center-items">
+            <a href="./data/IhmisenTarina.zip"> <img src="./pdf.svg"> </a>
+            <a href="./data/IhmisenTarinaNuotit.zip"> <img src="./mscz.svg"> </a>
+            <a href="./data/IhmisenTarina_mp3.zip"> <img src="./mp3.svg"> </a>
+          </div>
+        </li>
+        <li>
+          <div>
+            'Sota-asu' kertoo lasten tasolta hengellisestä sota-asusta Efesolaiskirjeen mukaan.
+
+          </div>
+          <div class="center-items">
+
+            <a href="./data/SotaAsu.zip"> <img src="./pdf.svg"> </a>
+            <a href="./data/SotaAsuNuotit.zip"> <img src="./mscz.svg"> </a>
+            <a href="./data/SotaAsu_mp3.zip"> <img src="./mp3.svg"> </a>
+          </div>
+        </li>
+        <li>
+          <div>
+
+            'Lapsi vain' kertoo unohdetuista lapsista ja niiden merkityksestä Jumalalle
+          </div>
+          <div class="center-items">
+
+            <a href="./data/LapsiVain.zip"> <img src="./pdf.svg"> </a>
+            <a href="./data/LapsiVainNuotit.zip"> <img src="./mscz.svg"> </a>
+            <a href="./data/LapsiVain_mp3.zip"> <img src="./mp3.svg"> </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+<hr>
+
+
+    <div class="part">
+      <h3>Laulut:</h3>
+      <ul class="music-links">
+        <li>
+          <div>
+            'Äidin muisto'. Tehty äidin hautajaisiin
+
+          </div>
+          <div class="center-items">
+            <a href="./data/AidinMuisto.pdf"> <img src="./pdf.svg"> </a>
+            <a href="./data/AidinMuisto.zip"> <img src="./mscz.svg"> </a>
+            <a href="./data/AidinMuisto.mp3"> <img src="./mp3.svg"> </a>
+
+          </div>
+        </li>
+        <li>
+          <div>
+            'Lapsen rukous'. äitienpäivälaulu
+
+          </div>
+          <div class="center-items">
+            <a href="./data/LapsenRukous.pdf"> <img src="./pdf.svg"> </a>
+            <a href="./data/LapsenRukous.zip"> <img src="./mscz.svg"> </a>
+            <a href="./data/LapsenRukous.mp3"> <img src="./mp3.svg"> </a>
+
+          </div>
+        </li>
+        <li>
+          <div>
+            'Me löysimme Jeesuksen'. Joululaulu
+
+          </div>
+          <div class="center-items">
+            <a href="./data/MeLoysimmeJeesuksen.pdf"> <img src="./pdf.svg"> </a>
+            <a href="./data/MeLoysimmeJeesuksen.zip"> <img src="./mscz.svg"> </a>
+            <a href="./data/MeLoysimmeJeesuksen.mp3"> <img src="./mp3.svg"> </a>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+
+<hr>
+
+
+    <div class="part">
+      <h3>Laulujen suomennoksia:</h3>
+      <ul>
+        <li>
+          <div>
+            One Day at a time, Peace in the Walley, Down to the River
+
+          </div>
+          <div class="center-items">
+            <a href="./data/Suomennokset.pdf"> <img class="icon" src="./pdf.svg"> </a>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+
 
 
     <div class="kayttoehdot">
@@ -93,76 +214,6 @@
       </div>
     </div>
 
-    <div class="part">
-      <h3>Musikaalit:</h3>
-      <ul class="music-links">
-        <li>
-          'Ihmisen tarina' kertoo koko ihmisen historian luomisesta ikuisuuteen taivaallisesta näkökulmasta.
-          <br>
-          <a href="./data/IhmisenTarina.zip"> <img src="./pdf.svg"> </a>
-          <a href="./data/IhmisenTarinaNuotit.zip"> <img src="./mscz.svg"> </a>
-          <a href="./data/IhmisenTarina_mp3.zip"> <img src="./mp3.svg"> </a>
-        </li>
-        <li>
-          'Sota-asu' kertoo lasten tasolta hengellisestä sota-asusta Efesolaiskirjeen mukaan.
-          <br>
-          <a href="./data/SotaAsu.zip"> <img src="./pdf.svg"> </a>
-          <a href="./data/SotaAsuNuotit.zip"> <img src="./mscz.svg"> </a>
-          <a href="./data/SotaAsu_mp3.zip"> <img src="./mp3.svg"> </a>
-        </li>
-        <li>
-          'Lapsi vain' kertoo unohdetuista lapsista ja niiden merkityksestä Jumalalle
-          <br>
-          <a href="./data/LapsiVain.zip"> <img src="./pdf.svg"> </a>
-          <a href="./data/LapsiVainNuotit.zip"> <img src="./mscz.svg"> </a>
-          <a href="./data/LapsiVain_mp3.zip"> <img src="./mp3.svg"> </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="part">
-      <h3>Laulut:</h3>
-      <ul class="music-links">
-        <li>
-          'Äidin muisto'. Tehty äidin hautajaisiin
-          <br>
-          <a href="./data/AidinMuisto.pdf"> <img src="./pdf.svg"> </a>
-          <a href="./data/AidinMuisto.zip"> <img src="./mscz.svg"> </a>
-          <a href="./data/AidinMuisto.mp3"> <img src="./mp3.svg"> </a>
-        </li>
-        <li>
-          'Lapsen rukous'. äitienpäivälaulu
-          <br>
-          <a href="./data/LapsenRukous.pdf"> <img src="./pdf.svg"> </a>
-          <a href="./data/LapsenRukous.zip"> <img src="./mscz.svg"> </a>
-          <a href="./data/LapsenRukous.mp3"> <img src="./mp3.svg"> </a>
-        </li>
-        <li>
-          'Me löysimme Jeesuksen'. Joululaulu
-          <br>
-          <a href="./data/MeLoysimmeJeesuksen.pdf"> <img src="./pdf.svg"> </a>
-          <a href="./data/MeLoysimmeJeesuksen.zip"> <img src="./mscz.svg"> </a>
-          <a href="./data/MeLoysimmeJeesuksen.mp3"> <img src="./mp3.svg"> </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="part">
-      <h3>Laulujen suomennoksia:</h3>
-      <ul>
-        <li>
-          One Day at a time, Peace in the Walley, Down to the River
-          <br>
-          <a href="./data/Suomennokset.pdf"> <img class="icon" src="./pdf.svg"> </a>
-        </li>
-      </ul>
-    </div>
-
-
-    <p class="update-info">
-      25.11.2018: Nyt sähköposti: musiikki@palomäki.fi toimii ! <br>
-      27.11.2018: MP3-tiedostot lisätty
-    </p>
   </div>
 
 </body>
