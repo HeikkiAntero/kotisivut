@@ -39,7 +39,9 @@ window.onload = function () {
 
 function gotData(d) {
     globalData = Object.values(d.val());
+    globalData.sort((a, b) => a.aika - b.aika)
     globalData = handleGapsInData(globalData);
+    // console.log('globalData:', globalData)
 
     initializeDOM();
     luoValikko();
@@ -93,7 +95,6 @@ function ladataanTietojaIkkuna() {
     loadingDiv.appendChild(p);
     body.appendChild(loadingDiv);
 }
-
 
 function handleGapsInData(dataArr) {
     let newArr = [];
@@ -316,6 +317,7 @@ function getTitle(name) {
     }
     return names[name]
 }
+
 function checkboxes() {
     let checkedKeys = (
         localStorage.getItem('keys') === null
