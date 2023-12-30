@@ -372,13 +372,28 @@ function draw(keys, rangeSel) {
 
 
     function legendFormatter(dataArr) {
-        if (dataArr.x) { // jos on dataa, eli hiiri grahpin yläpuolella
-            const time = '<div id="legend-aika"><span>' + moment(new Date(dataArr.x)).format('DD.MM.YYYY HH:mm') + '</span></div>';
-            const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'><span style="color: ${obj.color};">${obj.label}</span> <span>${formatValue(obj.y, undefined, obj.label)}</span></div>`);
+        if (dataArr.x) { // jos on dataa, eli hiiri graphin yläpuolella
+            const time = `<div id="legend-aika">
+                <span>${ moment(new Date(dataArr.x)).format('DD.MM.YYYY HH:mm') }</span>
+            </div>`;
+            const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'>
+                <span style="color: ${obj.color};">${obj.label}</span> 
+                <span>${formatValue(obj.y, undefined, obj.label)}</span>
+            </div>`);
             return time + valuesArray.map(x => x).join('');
-        }
-        const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'><span style="color: ${obj.color};" title="${getTitle(obj.label)}">${obj.label}</span><spa></span></div>`);
-        return '<div id="legend-aika"><span></span></div>' + valuesArray.map(x => x).join('');
+        } 
+        const lastParsedData = parsedData[parsedData.length - 1];
+        const [date, ...values] = lastParsedData;
+        const time = `<div id="legend-aika">
+            <span class='small'>viimeisin</span>
+            <span>${ moment(date).format('DD.MM.YYYY HH:mm') }</span>
+        </div>`;
+
+        const valuesArray = dataArr.series.map((obj,i) => `<div class='legend-arvot'>
+            <span style="color: ${obj.color};" title="${getTitle(obj.label)}">${obj.label}</span>
+            <span>${formatValue(values[i], undefined, obj.label)}</span>
+        </div>`);
+        return time + valuesArray.map(x => x).join('');
     }
 
 
@@ -400,8 +415,8 @@ function draw(keys, rangeSel) {
             labelsDiv: 'legenddiv',
             legendFormatter: legendFormatter,
             titleHeight: 32,
-            ylabel: 'Arvot',//'Lämpötila (&#8451)',
-            xlabel: 'Päivämäärä/aika',
+            // ylabel: 'Arvot',//'Lämpötila (&#8451)',
+            // xlabel: 'Päivämäärä/aika',
             strokeWidth: 1.5,
             showRangeSelector: rangeSel,
             animatedZooms: !rangeSel, // when rangeSelector is on animation need to be off

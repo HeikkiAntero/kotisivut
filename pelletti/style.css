@@ -201,6 +201,11 @@ input[type=checkbox]:checked + label:after {
 
 }
 
+.small {
+    font-size: 70% !important;
+    font-weight: bold;
+}
+
 @media (min-width: 550px) {
     #legenddiv {
         grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
