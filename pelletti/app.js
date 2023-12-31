@@ -37,8 +37,12 @@ window.onload = function () {
     ladataanTietojaIkkuna();
 }; // window.onload = function () {
 
-function gotData(d) {
-    globalData = Object.values(d.val());
+/**
+ * runs when data is loaded from firebase
+ * @param {*} data 
+ */
+function gotData(data) {
+    globalData = Object.values(data.val());
     globalData.sort((a, b) => a.aika - b.aika)
     globalData = handleGapsInData(globalData);
     // console.log('globalData:', globalData)
@@ -151,6 +155,19 @@ function luoValikko() {
         <input type="text" id='end-date' placeholder="dd-mm-yyyy">
         <button id="date-range-button">Zoomaa</button>
       </div>
+    </div>
+
+    <div style='margin: auto;'>
+        <pre>
+            ov: ohjeveden lämpötila
+            mv: menoveden lämpötila
+            pv: varaajan lämpötila
+            ul: ulkolämpötila
+            sl: sisälämpötila
+            kl: kattilan lämpötila
+            kv: hormin lämpötila
+            oh: ohjaus
+        </pre>
     </div>
 
     <ul>
@@ -306,9 +323,9 @@ function updateGraph(e) {
 
 function getTitle(name) {
     const names = {
-        'ov': 'ohjevesi',
-        'mv': 'menovesi',
-        'pv': '-',
+        'ov': 'ohjeveden lämpötila',
+        'mv': 'menoveden lämpötila',
+        'pv': 'varaajan lämpötila',
         'ul': 'ulkolämpötila',
         'sl': 'sisälämpötila',
         'kl': 'kattilan lämpötila',
@@ -327,21 +344,40 @@ function checkboxes() {
         : localStorage.getItem('keys');
 
     const names = [
-        'ov', // ohjevesi
-        'mv', // menovesi
-        'pv', // -
-        'ul', // ulkolämpötila
-        'sl', // sisälämpötila
-        'kl', // kattilan lämpötila
-        'kv', // hormin lämpötila
-        'oh', // ohjaus
+        'ov',
+        'mv',
+        'pv',
+        'ul',
+        'sl',
+        'kl',
+        'kv',
+        'oh',
     ];
-    return names.map((n, i) => {
+    return names.map((name, i) => {
         return `
-      <input id='${n}' class='boxes' type="checkbox" value="${n}" ${checkedKeys.indexOf(n) > -1 ? 'checked' : ''}>
-      <label for="${n}" title="${getTitle(n)}"  style="color:${COLORS[n]};font-weight:bold;">${n}</label>
+      <input id='${name}' class='boxes' type="checkbox" value="${name}" ${checkedKeys.indexOf(name) > -1 ? 'checked' : ''}>
+      <label for="${name}" title="${getTitle(name)}"  style="color:${COLORS[name]};font-weight:bold;">${displayName(name)}</label>
     `;
     }).join('');
+}
+
+/**
+ * käytettään näyttämään oikea nimilyhennys
+ * @param {string} name 
+ * @returns 
+ */
+function displayName(name) {
+    const names = {
+        ov: 'ov',
+        mv: 'mv',
+        pv: 'vl',
+        ul: 'ul',
+        sl: 'sl',
+        kl: 'kl',
+        kv: 'hl',
+        oh: 'oh',
+    }
+    return names[name]
 }
 
 function formatTime(v) {
@@ -374,23 +410,23 @@ function draw(keys, rangeSel) {
     function legendFormatter(dataArr) {
         if (dataArr.x) { // jos on dataa, eli hiiri graphin yläpuolella
             const time = `<div id="legend-aika">
-                <span>${ moment(new Date(dataArr.x)).format('DD.MM.YYYY HH:mm') }</span>
+                <span>${moment(new Date(dataArr.x)).format('DD.MM.YYYY HH:mm')}</span>
             </div>`;
             const valuesArray = dataArr.series.map(obj => `<div class='legend-arvot'>
-                <span style="color: ${obj.color};">${obj.label}</span> 
+                <span style="color: ${obj.color};">${displayName(obj.label)}</span> 
                 <span>${formatValue(obj.y, undefined, obj.label)}</span>
             </div>`);
             return time + valuesArray.map(x => x).join('');
-        } 
+        }
         const lastParsedData = parsedData[parsedData.length - 1];
         const [date, ...values] = lastParsedData;
         const time = `<div id="legend-aika">
             <span class='small'>viimeisin</span>
-            <span>${ moment(date).format('DD.MM.YYYY HH:mm') }</span>
+            <span>${moment(date).format('DD.MM.YYYY HH:mm')}</span>
         </div>`;
 
-        const valuesArray = dataArr.series.map((obj,i) => `<div class='legend-arvot'>
-            <span style="color: ${obj.color};" title="${getTitle(obj.label)}">${obj.label}</span>
+        const valuesArray = dataArr.series.map((obj, i) => `<div class='legend-arvot'>
+            <span style="color: ${obj.color};" title="${getTitle(obj.label)}">${displayName(obj.label)}</span>
             <span>${formatValue(values[i], undefined, obj.label)}</span>
         </div>`);
         return time + valuesArray.map(x => x).join('');
