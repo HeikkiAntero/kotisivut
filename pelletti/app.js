@@ -4,10 +4,22 @@ const COLORS = {
     sl: 'red',
     ov: 'purple',
     oh: 'saddlebrown',
-    pv: 'orange',
+    pv: '#606060', // grey
     kl: 'black',
     kv: 'lime',
 };
+
+// oikeiden nimilyhenteiden määrittely
+const NAMES = {
+    ov: 'ov',
+    mv: 'mv',
+    pv: 'vl',
+    ul: 'ul',
+    sl: 'sl',
+    kl: 'kl',
+    kv: 'hl',
+    oh: 'oh',
+}
 
 
 let globalData;
@@ -158,15 +170,20 @@ function luoValikko() {
     </div>
 
     <div style='margin: auto;'>
-        <pre>
-            ov: ohjeveden lämpötila
-            mv: menoveden lämpötila
-            pv: varaajan lämpötila
-            ul: ulkolämpötila
-            sl: sisälämpötila
-            kl: kattilan lämpötila
-            kv: hormin lämpötila
-            oh: ohjaus
+        <pre  style='margin: auto;'>
+            <table style='margin: auto;'>
+                ${
+                    Object.entries(NAMES).map(([key, value], i) => {
+                        // <div><span style="color:${COLORS[key]};font-weight:bold;">${value}</span>: ${getTitle(key)}</div>
+                        return `
+                            <tr>
+                                <td><span style="color:${COLORS[key]};font-weight:bold;">${value}</span>:</td>
+                                <td>${getTitle(key)}</td>
+                            </tr>
+                        `;
+                    }).join('')
+                }
+            </table>
         </pre>
     </div>
 
@@ -322,7 +339,7 @@ function updateGraph(e) {
 }
 
 function getTitle(name) {
-    const names = {
+    const titles = {
         'ov': 'ohjeveden lämpötila',
         'mv': 'menoveden lämpötila',
         'pv': 'varaajan lämpötila',
@@ -332,7 +349,7 @@ function getTitle(name) {
         'kv': 'hormin lämpötila',
         'oh': 'ohjaus',
     }
-    return names[name]
+    return titles[name]
 }
 
 function checkboxes() {
@@ -367,17 +384,7 @@ function checkboxes() {
  * @returns 
  */
 function displayName(name) {
-    const names = {
-        ov: 'ov',
-        mv: 'mv',
-        pv: 'vl',
-        ul: 'ul',
-        sl: 'sl',
-        kl: 'kl',
-        kv: 'hl',
-        oh: 'oh',
-    }
-    return names[name]
+    return NAMES[name]
 }
 
 function formatTime(v) {
