@@ -157,6 +157,7 @@ function luoValikko() {
 
     <div id='zooming'>
       <div id='zooming-buttons'>
+        <button id="range-4h-button">4h</button>
         <button id="range-24h-button">24h</button>
         <button id="range-viikko-button">viikko</button>
         <button id="range-kk-button">kk</button>
@@ -172,17 +173,15 @@ function luoValikko() {
     <div style='margin: auto;'>
         <pre  style='margin: auto;'>
             <table style='margin: auto;'>
-                ${
-                    Object.entries(NAMES).map(([key, value], i) => {
-                        // <div><span style="color:${COLORS[key]};font-weight:bold;">${value}</span>: ${getTitle(key)}</div>
-                        return `
+                ${Object.entries(NAMES).map(([key, value]) => {
+        return `
                             <tr>
                                 <td><span style="color:${COLORS[key]};font-weight:bold;">${value}</span>:</td>
                                 <td>${getTitle(key)}</td>
                             </tr>
                         `;
-                    }).join('')
-                }
+    }).join('')
+        }
             </table>
         </pre>
     </div>
@@ -248,12 +247,12 @@ function addingListeners() {
             zoomButtonClicked();
         }
     });
-    addEventsZoomButtons(['24h', 'viikko', 'kk', 'kaikki',]);
+    addEventsZoomButtons(['4h', '24h', 'viikko', 'kk', 'kaikki',]);
 }
 
-// zoomaus vakio arvoihin (viimeiset 24h, viikko, kk, kaikki)
+// zoomaus vakio arvoihin (viimeiset 4h, 24h, viikko, kk, kaikki)
 function zoomToConstantValues(start) {
-    const startDate = start; //moment().subtract(24, 'hours')._d.getTime();
+    const startDate = start;
     const endDate = moment()._d.getTime();
     if (isFinite(startDate) && isFinite(endDate)) {
         globalCoor = [startDate, endDate];
@@ -284,6 +283,9 @@ function addEventsZoomButtons(keys) {
         element.addEventListener('click', function () {
 
             switch (k) {
+                case '4h':
+                    start = moment(new Date()).subtract(4, 'hours')._d.getTime();
+                    break;
                 case '24h':
                     start = moment(new Date()).subtract(25, 'hours')._d.getTime();
                     break;

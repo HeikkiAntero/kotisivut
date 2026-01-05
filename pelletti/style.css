@@ -234,20 +234,17 @@ input[type=checkbox]:checked + label:after {
 
 #info {
     margin: 5px 5% 0 5%;
-
 }
 
 #info #zooming {
     margin: 5px 0;
     display: grid;
-
 }
 
 #info #zooming #zooming-buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap: 1rem;
-
 }
 
 #info #zooming #zooming-buttons button {
