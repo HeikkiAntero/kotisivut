@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f5f5f5;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+/* Wrapper that sizes both the wheel and the SVG ring overlay */
+#wheel-area {
+    position: relative;
+    width: min(90vw, 600px);
+    height: min(90vw, 600px);
+    margin: 20px auto;
+}
+
+#wheel {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #f0ece4;
+}
+
+.tile {
+    position: absolute;
+    width: 18%;
+    height: 18%;
+    border-radius: 50%;
+    /* rotation set per-tile in JS */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: min(6vw, 54px);
+    color: white;
+    box-shadow: 0 0 0 5px #2a1a0a;
+    user-select: none;
+}
+
+/* Outer hexagon: 6 tiles at 60° steps starting from top */
+.tile:nth-child(1) { --angle: 90deg; }
+.tile:nth-child(2) { --angle: 30deg; }
+.tile:nth-child(3) { --angle: -30deg; }
+.tile:nth-child(4) { --angle: -90deg; }
+.tile:nth-child(5) { --angle: -150deg; }
+.tile:nth-child(6) { --angle: 150deg; }
+
+/* Inner triangle: 3 tiles at 120° steps */
+.tile:nth-child(7) { --angle: 60deg; }
+.tile:nth-child(8) { --angle: -60deg; }
+.tile:nth-child(9) { --angle: -180deg; }
+
+.outer {
+    left: calc(50% + cos(var(--angle)) * 37%);
+    top: calc(50% - sin(var(--angle)) * 37%);
+}
+
+.inner {
+    left: calc(50% + cos(var(--angle)) * 14%);
+    top: calc(50% - sin(var(--angle)) * 14%);
+}
+
+/* SVG ring overlay — sits over the wheel edge */
+#timer-ring {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+#timer-track {
+    fill: none;
+    stroke: #d0c8b8;
+    stroke-width: 2;
+}
+
+#timer-arc {
+    fill: none;
+    stroke: #322e4e;
+    stroke-width: 2;
+    /* stroke-linecap: round; */
+}
+
+/* Timer controls below the wheel */
+#timer-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin: 12px 0 6px;
+    font-size: 18px;
+}
+
+#timer-display {
+    font-size: 36px;
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    min-width: 70px;
+}
+
+#duration-input {
+    width: 48px;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid #a09880;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+#timer-message {
+    font-size: 22px;
+    font-weight: bold;
+    color: #c62828;
+    min-height: 30px;
+    margin: 4px 0 8px;
+}
+
+#shuffle-btn {
+    margin: 8px auto;
+    padding: 18px 60px;
+    font-size: 28px;
+    font-weight: bold;
+    background: #4e342e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#shuffle-btn:hover {
+    background: #6d4c41;
+}

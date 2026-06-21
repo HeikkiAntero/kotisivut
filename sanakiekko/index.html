@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanakiekko</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>SANAKIEKKO</h1>
+
+    <div id="wheel-area">
+        <div id="wheel">
+            <!-- 6 outer tiles form a hexagon -->
+            <div class="tile outer"></div>
+            <div class="tile outer"></div>
+            <div class="tile outer"></div>
+            <div class="tile outer"></div>
+            <div class="tile outer"></div>
+            <div class="tile outer"></div>
+            <!-- 3 inner tiles form a triangle -->
+            <div class="tile inner"></div>
+            <div class="tile inner"></div>
+            <div class="tile inner"></div>
+        </div>
+
+        <!-- Timer arc ring, sits on top of wheel as overlay -->
+        <svg id="timer-ring" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g transform="rotate(-90 50 50)">
+                <circle id="timer-track" cx="50" cy="50" r="50"/>
+                <circle id="timer-arc"   cx="50" cy="50" r="50"/>
+            </g>
+        </svg>
+    </div>
+
+    <div id="timer-bar">
+        <span id="timer-display"></span>
+        <label>Aika: <input type="number" id="duration-input" min="0" max="60" value="5"> min</label>
+    </div>
+
+    <p id="timer-message"></p>
+
+    <button id="shuffle-btn">Sekoita</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
