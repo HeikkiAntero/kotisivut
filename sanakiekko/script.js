@@ -82,8 +82,13 @@ function clearPendingTap() {
 
 function setShuffleButtonState(isRunning) {
     shuffleButton.textContent = isRunning ? "Pysäytä" : "Uusi";
-    shuffleButton.classList.toggle("is-running", isRunning);
-    shuffleButton.classList.toggle("is-idle", !isRunning);
+    if (isRunning) {
+        shuffleButton.classList.add("is-running");
+        shuffleButton.classList.remove("is-idle");
+    } else {
+        shuffleButton.classList.remove("is-running");
+        shuffleButton.classList.add("is-idle");
+    }
 }
 
 function parseDurationMinutes(value) {
