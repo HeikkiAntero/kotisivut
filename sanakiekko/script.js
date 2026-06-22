@@ -73,6 +73,21 @@ function clearPendingTap() {
     pendingTile = null;
 }
 
+function parseDurationMinutes(value) {
+    const normalized = value.trim().replace(",", ".");
+    const minutes = Number(normalized);
+    return Number.isFinite(minutes) ? minutes : 0;
+}
+
+function formatDurationPreview(minutes) {
+    const totalSeconds = Math.round(minutes * 60);
+    if (totalSeconds <= 0) return "";
+
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
 function replaceTileLetter(tile) {
     const currentLetter = tile.textContent;
     const currentIsVowel = VOWELS.includes(currentLetter);
@@ -97,8 +112,8 @@ function replaceTileLetter(tile) {
 
 durationInput.addEventListener("input", () => {
     if (!timerRunning) {
-        const mins = parseInt(durationInput.value) || 0;
-        timerDisplay.textContent = mins > 0 ? `${mins}:00` : "";
+        const mins = parseDurationMinutes(durationInput.value);
+        timerDisplay.textContent = formatDurationPreview(mins);
         timerArc.style.strokeDashoffset = 0;
         timerMessage.textContent = "";
     }
@@ -137,7 +152,7 @@ function generateWheel() {
 }
 
 function startTimer() {
-    const minutes = parseInt(durationInput.value) || 0;
+    const minutes = parseDurationMinutes(durationInput.value);
 
     if (minutes <= 0) {
         if (rafId) cancelAnimationFrame(rafId);
