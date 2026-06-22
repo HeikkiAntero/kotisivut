@@ -99,6 +99,7 @@ h1 {
 
 #timer-display {
     font-size: 36px;
+    color: #b3b3b3;
     font-weight: bold;
     font-variant-numeric: tabular-nums;
     min-width: 70px;
