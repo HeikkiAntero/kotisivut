@@ -34,6 +34,10 @@ const timerDisplay = document.getElementById('timer-display')
 const timerMessage = document.getElementById('timer-message')
 const durationInput = document.getElementById('duration-input')
 const wheel = document.getElementById('wheel')
+const helpBtn = document.getElementById('help-btn')
+const helpModal = document.getElementById('help-modal')
+const helpPanel = helpModal.querySelector('.modal-panel')
+const helpCloseTargets = helpModal.querySelectorAll('[data-close-help]')
 
 timerArc.style.strokeDasharray = CIRCUMFERENCE
 timerArc.style.strokeDashoffset = 0
@@ -140,6 +144,36 @@ durationInput.addEventListener('input', () => {
     timerMessage.textContent = ''
   }
 })
+
+helpBtn.addEventListener('click', openHelpModal)
+
+helpCloseTargets.forEach((target) => {
+  target.addEventListener('click', closeHelpModal)
+})
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !helpModal.classList.contains('hidden')) {
+    closeHelpModal()
+  }
+})
+
+helpPanel.addEventListener('click', (event) => {
+  event.stopPropagation()
+})
+
+function openHelpModal() {
+  helpModal.classList.remove('hidden')
+  helpModal.setAttribute('aria-hidden', 'false')
+  helpBtn.setAttribute('aria-expanded', 'true')
+  helpModal.querySelector('.modal-close').focus()
+}
+
+function closeHelpModal() {
+  helpModal.classList.add('hidden')
+  helpModal.setAttribute('aria-hidden', 'true')
+  helpBtn.setAttribute('aria-expanded', 'false')
+  helpBtn.focus()
+}
 
 function buildLetterPool() {
   const upper = TEXT_SOURCE.toUpperCase()

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="fi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanakiekko</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>SANAKIEKKO</h1>
+    <header class="page-header">
+        <h1>SANAKIEKKO</h1>
+        <button id="help-btn" class="help-btn" type="button" aria-label="Avaa peliohje" aria-expanded="false">
+            ?
+        </button>
+    </header>
 
     <div id="wheel-area">
         <div id="wheel">
@@ -27,8 +34,8 @@
         <!-- Timer arc ring, sits on top of wheel as overlay -->
         <svg id="timer-ring" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
             <g transform="rotate(-90 50 50)">
-                <circle id="timer-track" cx="50" cy="50" r="50"/>
-                <circle id="timer-arc"   cx="50" cy="50" r="50"/>
+                <circle id="timer-track" cx="50" cy="50" r="50" />
+                <circle id="timer-arc" cx="50" cy="50" r="50" />
             </g>
         </svg>
     </div>
@@ -42,6 +49,37 @@
 
     <button id="shuffle-btn">Uusi</button>
 
+    <div id="help-modal" class="modal hidden" aria-hidden="true">
+        <div class="modal-backdrop" data-close-help></div>
+        <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="help-title">
+            <button class="modal-close" type="button" data-close-help aria-label="Sulje ohje">
+                ×
+            </button>
+            <h2 id="help-title">Näin pelaat</h2>
+            <p>Etsi mahdollisimman monta sanaa valituista kirjaimista</p>
+            <ul>
+                <li>Jokainen muodostaa kiekon yhdeksästä kirjaimesta vähintään <strong>5</strong> merkin mittaisia
+                    sanoja </li>
+                <li>Joka ensin saa kymmenen sanaa, keskeyttää kierroksen</li>
+                <li>Kaikki luettelevat löytämänsä sanat </li>
+                <li>Jos sana on jollakin muulla, se vedetään yli </li>
+                <li>Jäljellejääneistä jokaisesta sanasta saa pisteen </li>
+                <li>Lisäksi ensin <strong>10</strong> löytänyt saa lisäpisteen <i>(valinnainen)</i></li>
+                <li>Sanoiksi ei kelpaa mitkään erisnimet </li>
+                <li>Sanat pitää olla perusmuodossa; ei taivutettuna; ei monikoita </li>
+                <li>Sanat pitää olla suomen kirjakielestä löytyviä </li>
+                <li>Viiden kierroksen jälkeen lasketaan saadut pisteet yhteen </li>
+                <li>Kierroksen ajan pittuutta voi halutessa vaihtaa</li>
+                <li>Yksittäisen kirjaimen voi sovitusti vaihtaa kaksoisklikkaamassa sitä</li>
+                <li>Aloita uusi kierros painamalla <strong>Uusi</strong> nappia</li>
+                <li>Voitaja on se, jolla on eniten pisteitä 5 kierroksen päätteeksi</li>
+                <li>Sääntöjä voi sovitusti muokata</li>
+                <h2 id="help-title">Peli-iloa! :)</h2>
+            </ul>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -2,11 +2,21 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     text-align: center;
-    background: #f5f5f5;
+    background: radial-gradient(circle at top, #fbf7ef 0%, #efe7db 45%, #e7ddcf 100%);
+    color: #2b241d;
+}
+
+.page-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 h1 {
-    margin-top: 20px;
+    margin: 0;
+    letter-spacing: 0.08em;
 }
 
 /* Wrapper that sizes both the wheel and the SVG ring overlay */
@@ -142,4 +152,94 @@ h1 {
 
 #shuffle-btn.is-running {
     background: #c62828;
+}
+
+.help-btn {
+    width: 34px;
+    height: 34px;
+    border: 2px solid #2a1a0a;
+    border-radius: 50%;
+    background: #fff8eb;
+    color: #2a1a0a;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 0 rgba(42, 26, 10, 0.2);
+}
+
+.help-btn:hover {
+    background: #f6ead3;
+}
+
+.help-btn:focus-visible,
+#shuffle-btn:focus-visible,
+.modal-close:focus-visible {
+    outline: 3px solid #1a73e8;
+    outline-offset: 3px;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 16, 10, 0.55);
+}
+
+.modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(92vw, 460px);
+    padding: 28px 26px 22px;
+    border-radius: 18px;
+    background: #fffaf3;
+    color: #2b241d;
+    text-align: left;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
+}
+
+.modal-panel h2 {
+    margin: 0 0 14px;
+    font-size: 28px;
+}
+
+.modal-panel p {
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+
+.modal-panel ul {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.55;
+}
+
+.modal-panel li + li {
+    margin-top: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #eee4d4;
+    color: #2b241d;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
 }
