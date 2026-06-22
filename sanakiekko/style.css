@@ -126,13 +126,19 @@ h1 {
     padding: 18px 60px;
     font-size: 28px;
     font-weight: bold;
-    background: #4e342e;
+    background: #2e7d32;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
-#shuffle-btn:hover {
-    background: #6d4c41;
+
+#shuffle-btn.is-idle {
+    background: #2e7d32;
+}
+
+#shuffle-btn.is-running {
+    background: #c62828;
 }

@@ -39,11 +39,18 @@ let totalDuration = null;
 let rafId         = null;
 let pendingTile   = null;
 let pendingTapId  = null;
+const shuffleButton = document.getElementById("shuffle-btn");
 
 buildLetterPool();
 generateWheel();
+setShuffleButtonState(false);
 
-document.getElementById("shuffle-btn").addEventListener("click", () => {
+shuffleButton.addEventListener("click", () => {
+    if (timerRunning) {
+        stopTimer();
+        return;
+    }
+
     generateWheel();
     startTimer();
 });
@@ -71,6 +78,12 @@ function clearPendingTap() {
         pendingTapId = null;
     }
     pendingTile = null;
+}
+
+function setShuffleButtonState(isRunning) {
+    shuffleButton.textContent = isRunning ? "Pysäytä" : "Uusi";
+    shuffleButton.classList.toggle("is-running", isRunning);
+    shuffleButton.classList.toggle("is-idle", !isRunning);
 }
 
 function parseDurationMinutes(value) {
@@ -157,6 +170,7 @@ function startTimer() {
     if (minutes <= 0) {
         if (rafId) cancelAnimationFrame(rafId);
         timerRunning = false;
+        setShuffleButtonState(false);
         timerDisplay.textContent = "";
         timerArc.style.strokeDashoffset = 0;
         timerMessage.textContent = "";
@@ -166,9 +180,21 @@ function startTimer() {
     totalDuration = minutes * 60 * 1000;
     timerEndTime  = Date.now() + totalDuration;
     timerRunning  = true;
+    setShuffleButtonState(true);
     timerMessage.textContent = "";
     if (rafId) cancelAnimationFrame(rafId);
     tick();
+}
+
+function stopTimer() {
+    if (rafId) cancelAnimationFrame(rafId);
+    timerRunning = false;
+    timerEndTime = null;
+    totalDuration = null;
+    setShuffleButtonState(false);
+    timerDisplay.textContent = "";
+    timerArc.style.strokeDashoffset = 0;
+    timerMessage.textContent = "";
 }
 
 function tick() {
@@ -183,6 +209,9 @@ function tick() {
 
     if (remaining === 0) {
         timerRunning = false;
+        timerEndTime = null;
+        totalDuration = null;
+        setShuffleButtonState(false);
         timerMessage.textContent = "Aika loppui!";
         playBell();
         return;
