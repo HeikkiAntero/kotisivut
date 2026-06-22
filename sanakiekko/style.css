@@ -4,6 +4,7 @@ body {
     text-align: center;
     background: radial-gradient(circle at top, #fbf7ef 0%, #efe7db 45%, #e7ddcf 100%);
     color: #2b241d;
+    min-height: 100vh;
 }
 
 .page-header {
