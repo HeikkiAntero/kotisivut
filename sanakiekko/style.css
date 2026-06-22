@@ -38,6 +38,7 @@ h1 {
     color: white;
     box-shadow: 0 0 0 5px #2a1a0a;
     user-select: none;
+    cursor: pointer;
 }
 
 /* Outer hexagon: 6 tiles at 60° steps starting from top */

@@ -27,6 +27,7 @@ const timerArc       = document.getElementById("timer-arc");
 const timerDisplay   = document.getElementById("timer-display");
 const timerMessage   = document.getElementById("timer-message");
 const durationInput  = document.getElementById("duration-input");
+const wheel          = document.getElementById("wheel");
 
 timerArc.style.strokeDasharray  = CIRCUMFERENCE;
 timerArc.style.strokeDashoffset = 0;
@@ -36,6 +37,8 @@ let timerRunning  = false;
 let timerEndTime  = null;
 let totalDuration = null;
 let rafId         = null;
+let pendingTile   = null;
+let pendingTapId  = null;
 
 buildLetterPool();
 generateWheel();
@@ -44,6 +47,53 @@ document.getElementById("shuffle-btn").addEventListener("click", () => {
     generateWheel();
     startTimer();
 });
+
+wheel.addEventListener("click", (event) => {
+    const tile = event.target.closest(".tile");
+    if (!tile) return;
+
+    if (pendingTile === tile) {
+        clearPendingTap();
+        replaceTileLetter(tile);
+        return;
+    }
+
+    clearPendingTap();
+    pendingTile = tile;
+    pendingTapId = window.setTimeout(() => {
+        clearPendingTap();
+    }, 400);
+});
+
+function clearPendingTap() {
+    if (pendingTapId !== null) {
+        clearTimeout(pendingTapId);
+        pendingTapId = null;
+    }
+    pendingTile = null;
+}
+
+function replaceTileLetter(tile) {
+    const currentLetter = tile.textContent;
+    const currentIsVowel = VOWELS.includes(currentLetter);
+    const currentVowelCount = Array.from(tiles).filter((t) => VOWELS.includes(t.textContent)).length;
+
+    const candidates = letterPool.filter((letter) => {
+        if (letter === currentLetter) return false;
+
+        const nextVowelCount =
+            currentVowelCount +
+            (VOWELS.includes(letter) ? 1 : 0) -
+            (currentIsVowel ? 1 : 0);
+
+        return nextVowelCount >= 3 && nextVowelCount <= 6;
+    });
+
+    if (candidates.length === 0) return;
+
+    const newLetter = candidates[Math.floor(Math.random() * candidates.length)];
+    tile.textContent = newLetter;
+}
 
 durationInput.addEventListener("input", () => {
     if (!timerRunning) {
