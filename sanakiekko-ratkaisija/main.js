@@ -88,11 +88,16 @@ function showWords(indexes) {
 const paramsString = window.location.search;
 const searchParams = new URLSearchParams(paramsString);
 const letters = searchParams.get("letters")
+const visibleLetters = letters ? letters.toUpperCase() : ""
 
 const app = document.createElement("main");
 const title = document.createElement("h1");
 title.textContent = "Löydetyt sanat";
 app.appendChild(title);
+
+const lettersLabel = document.createElement("p");
+lettersLabel.textContent = `Käytetyt kirjaimet: ${visibleLetters || "-"}`;
+app.appendChild(lettersLabel);
 
 if (!letters || letters.length !== 9) {
   const message = document.createElement("p");

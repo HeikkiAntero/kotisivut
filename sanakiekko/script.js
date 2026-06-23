@@ -18,6 +18,7 @@ const helpBtn = document.getElementById('help-btn')
 const helpModal = document.getElementById('help-modal')
 const helpPanel = helpModal.querySelector('.modal-panel')
 const helpCloseTargets = helpModal.querySelectorAll('[data-close-help]')
+const solverLinkTitle = document.getElementById('solver-link-title')
 
 timerArc.style.strokeDasharray = CIRCUMFERENCE
 timerArc.style.strokeDashoffset = 0
@@ -156,6 +157,8 @@ helpPanel.addEventListener('click', (event) => {
   event.stopPropagation()
 })
 
+solverLinkTitle.addEventListener('dblclick', openSolverTab)
+
 function openHelpModal() {
   helpModal.classList.remove('hidden')
   helpModal.setAttribute('aria-hidden', 'false')
@@ -168,6 +171,17 @@ function closeHelpModal() {
   helpModal.setAttribute('aria-hidden', 'true')
   helpBtn.setAttribute('aria-expanded', 'false')
   helpBtn.focus()
+}
+
+function openSolverTab() {
+  const letters = Array.from(tiles)
+    .map((tile) => tile.textContent.trim())
+    .join('')
+
+  const solverUrl = new URL('../sanakiekko-ratkaisija/', window.location.href)
+  solverUrl.searchParams.set('letters', letters)
+
+  window.open(solverUrl.toString(), '_blank', 'noopener,noreferrer')
 }
 
 function buildLetterPool() {
