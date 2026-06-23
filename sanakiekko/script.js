@@ -12,6 +12,7 @@ const timerArc = document.getElementById('timer-arc')
 const timerDisplay = document.getElementById('timer-display')
 const timerMessage = document.getElementById('timer-message')
 const durationInput = document.getElementById('duration-input')
+const durationInputLabel = document.getElementById('duration-input-label')
 const wheel = document.getElementById('wheel')
 const helpBtn = document.getElementById('help-btn')
 const helpModal = document.getElementById('help-modal')
@@ -79,6 +80,8 @@ function clearPendingTap() {
 
 function setGameState(isRunning) {
   shuffleButton.textContent = isRunning ? 'Pysäytä' : 'Uusi'
+  durationInputLabel.hidden = isRunning
+  timerDisplay.hidden = !isRunning
   if (isRunning) {
     shuffleButton.classList.add('is-running')
     shuffleButton.classList.remove('is-idle')
@@ -131,6 +134,7 @@ durationInput.addEventListener('input', () => {
   if (!timerRunning) {
     const mins = parseDurationMinutes(durationInput.value)
     timerDisplay.textContent = formatDurationPreview(mins)
+    timerDisplay.hidden = true
     timerArc.style.strokeDashoffset = 0
     timerMessage.textContent = ''
   }
