@@ -1,8 +1,6 @@
-import { createElement } from "react";
 import { KOTUS } from "./cleaned_words.js";
 
 let kotus = filterWords(KOTUS)
-// console.log(kotus)
 
 /**
  * @param {string[]} words 
@@ -91,13 +89,37 @@ const paramsString = window.location.search;
 const searchParams = new URLSearchParams(paramsString);
 const letters = searchParams.get("letters")
 
-let possiblities = combinations(letters, 5, letters.length);
-const kotusSanat = inAlphabeth(KOTUS)
+const app = document.createElement("main");
+const title = document.createElement("h1");
+title.textContent = "Löydetyt sanat";
+app.appendChild(title);
 
-possiblities = inAlphabeth(possiblities)
-const ww = findWords(possiblities, kotusSanat)
+if (!letters || letters.length !== 9) {
+  const message = document.createElement("p");
+  message.textContent = "Lisää osoitteeseen ?letters=... 9 kirjainta, jotta sanat voidaan hakea.";
+  app.appendChild(message);
+  document.body.appendChild(app);
+} else {
+  let possiblities = combinations(letters, 5, letters.length);
+  const kotusSanat = inAlphabeth(KOTUS)
 
-const foundWords = showWords(ww)
+  possiblities = inAlphabeth(possiblities)
+  const ww = findWords(possiblities, kotusSanat)
 
-// possiblities.forEach(s => console.log(s));
-// console.log(`Sarjoja yhteensä: ${possiblities.length}`);
+  const foundWords = showWords(ww)
+
+  const list = document.createElement("ul");
+  for (const word of foundWords) {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = `https://www.kielitoimistonsanakirja.fi/#/${encodeURIComponent(word)}`;
+    link.target = "_blank";
+    link.rel = "noreferrer";
+    link.textContent = word;
+    item.appendChild(link);
+    list.appendChild(item);
+  }
+
+  app.appendChild(list);
+  document.body.appendChild(app);
+}
