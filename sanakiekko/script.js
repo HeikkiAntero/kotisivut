@@ -1,9 +1,11 @@
 import { TEXT_SOURCE } from './textSource.js'
 
-import {VALID_LETTERS} from './constants.js'
-import {VOWELS} from './constants.js'
-import {TILE_COLORS} from './constants.js'
-import {CIRCUMFERENCE} from './constants.js'
+import { VALID_LETTERS } from './constants.js'
+import { VOWELS } from './constants.js'
+import { TILE_COLORS } from './constants.js'
+import { CIRCUMFERENCE } from './constants.js'
+
+import { playBell } from './utils.js'
 
 const tiles = document.querySelectorAll('.tile')
 const timerArc = document.getElementById('timer-arc')
@@ -27,6 +29,18 @@ let rafId = null
 let pendingTile = null
 let pendingTapId = null
 const shuffleButton = document.getElementById('shuffle-btn')
+
+// MAIN ============================================
+function main() {
+  buildLetterPool()
+  generateWheel()
+  setGameState(false)
+}
+
+main()
+
+
+// FUNCTIONS ============================================
 
 shuffleButton.addEventListener('click', () => {
   if (timerRunning) {
@@ -239,29 +253,3 @@ function tick() {
 
   rafId = requestAnimationFrame(tick)
 }
-
-function playBell() {
-  try {
-    const ctx = new AudioContext()
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    osc.frequency.value = 830
-    osc.type = 'sine'
-    gain.gain.setValueAtTime(0.8, ctx.currentTime)
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2)
-    osc.start()
-    osc.stop(ctx.currentTime + 2)
-  } catch (e) {
-    // audio not available
-  }
-}
-
-function main() {
-  buildLetterPool()
-  generateWheel()
-  setGameState(false)
-}
-
-main()
