@@ -1,32 +1,9 @@
-const TEXT_SOURCE = `
-metsän tontuista, mökeistä, sammalesta ja puista.
-Metsän tarina
-Syvällä metsän syvyyksissä, tuuli humisee.
-Auringon säteet siivilöityvät puiden latvojen läpi.
-Metsätontut olivat metsän vartijoita.
-Tontut asuivat pienissä sammalpeitteisissä mökeissä.
-Puiden juuret ulottuivat syvälle maan uumeniin.
-Tontut hoitivat eläimiä ja kasveja.
-Metsä täyttyi valosta ja ilosta.
-`
+import { TEXT_SOURCE } from './textSource.js'
 
-const VALID_LETTERS = 'ABCDEFGHIJKLMNOPRSTUVYÄÖ'
-const VOWELS = 'AEIOUYÄÖ'
-
-const TILE_COLORS = [
-  '#c62828',
-  '#0277bd',
-  '#4e342e',
-  '#2e7d32',
-  '#f9a825',
-  '#6a1b9a',
-  '#1a1a2e',
-  '#ad1457',
-  '#bf360c',
-]
-
-// Timer: circumference of SVG circle at r=50
-const CIRCUMFERENCE = 2 * Math.PI * 50
+import {VALID_LETTERS} from './constants.js'
+import {VOWELS} from './constants.js'
+import {TILE_COLORS} from './constants.js'
+import {CIRCUMFERENCE} from './constants.js'
 
 const tiles = document.querySelectorAll('.tile')
 const timerArc = document.getElementById('timer-arc')
