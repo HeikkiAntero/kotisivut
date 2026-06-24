@@ -82,7 +82,9 @@ function findWords(possible, words) {
  * @param {number[]} indexes 
  */
 function showWords(indexes) {
-  return indexes.map(i => KOTUS[i])
+  let arr = indexes.map(i => KOTUS[i])
+  // poista duplikaatit, koska niitä voi olla jostakin syystä kielitoimiston listassa
+  return (new Set(arr)).values()
 }
 
 const paramsString = window.location.search;
@@ -113,7 +115,7 @@ if (!letters || letters.length !== 9) {
 
   const foundWords = showWords(ww)
 
-  const list = document.createElement("ul");
+  const list = document.createElement("ol");
   for (const word of foundWords) {
     const item = document.createElement("li");
     const link = document.createElement("a");
