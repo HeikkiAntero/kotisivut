@@ -1,0 +1,48 @@
+:root {
+  color-scheme: light;
+  --text: #222;
+  --muted: #555;
+  --link: #0645ad;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  padding: 24px 16px 40px;
+  color: var(--text);
+  font-family: sans-serif;
+  line-height: 1.5;
+  width: min(100%, 44rem);
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0 0 0.85rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.14em;
+}
+
+ol {
+  margin: 1rem 0 0;
+  padding-left: 1.4rem;
+}
+
+li {
+  margin: 0.35rem 0;
+}
